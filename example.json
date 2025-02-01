@@ -1,0 +1,310 @@
+{
+  "version": "0.0.1",
+  "name": "example",
+  "instructions": [
+    {
+      "name": "new",
+      "accounts": [
+        {
+          "name": "dataAccount",
+          "isMut": true,
+          "isSigner": false,
+          "isOptional": false
+        }
+      ],
+      "args": [
+        {
+          "name": "pid",
+          "type": "i32"
+        }
+      ]
+    },
+    {
+      "name": "is_zombie_reaper",
+      "accounts": [
+        {
+          "name": "dataAccount",
+          "isMut": false,
+          "isSigner": false,
+          "isOptional": false
+        }
+      ],
+      "args": [],
+      "returns": "bool"
+    },
+    {
+      "name": "systemd_pid",
+      "accounts": [],
+      "args": [],
+      "returns": "u32"
+    },
+    {
+      "name": "celcius2fahrenheit",
+      "docs": [
+        "notice: Convert celcius to fahrenheit"
+      ],
+      "accounts": [],
+      "args": [
+        {
+          "name": "celcius",
+          "type": "i32"
+        }
+      ],
+      "returns": "i32"
+    },
+    {
+      "name": "fahrenheit2celcius",
+      "docs": [
+        "notice: Convert fahrenheit to celcius"
+      ],
+      "accounts": [],
+      "args": [
+        {
+          "name": "fahrenheit",
+          "type": "i32"
+        }
+      ],
+      "returns": "i32"
+    },
+    {
+      "name": "is_power_of_2",
+      "docs": [
+        "notice: is this number a power-of-two"
+      ],
+      "accounts": [],
+      "args": [
+        {
+          "name": "n",
+          "type": "u256"
+        }
+      ],
+      "returns": "bool"
+    },
+    {
+      "name": "population_count",
+      "docs": [
+        "notice: calculate the population count (number of set bits) using Brian Kerningham's way"
+      ],
+      "accounts": [],
+      "args": [
+        {
+          "name": "n",
+          "type": "u256"
+        }
+      ],
+      "returns": "u256"
+    },
+    {
+      "name": "power",
+      "docs": [
+        "notice: calculate the power of base to exp"
+      ],
+      "accounts": [],
+      "args": [
+        {
+          "name": "base",
+          "type": "u256"
+        },
+        {
+          "name": "exp",
+          "type": "u256"
+        }
+      ],
+      "returns": "u256"
+    },
+    {
+      "name": "is_address_zero",
+      "docs": [
+        "notice: returns true if the address is 0"
+      ],
+      "accounts": [],
+      "args": [
+        {
+          "name": "a",
+          "type": "publicKey"
+        }
+      ],
+      "returns": "bool"
+    },
+    {
+      "name": "byte8reverse",
+      "docs": [
+        "notice: reverse the bytes in an array of 8 (endian swap)"
+      ],
+      "accounts": [],
+      "args": [
+        {
+          "name": "input",
+          "type": {
+            "array": [
+              "u8",
+              8
+            ]
+          }
+        }
+      ],
+      "returns": {
+        "array": [
+          "u8",
+          8
+        ]
+      }
+    },
+    {
+      "name": "reap_processes",
+      "accounts": [
+        {
+          "name": "dataAccount",
+          "isMut": true,
+          "isSigner": false,
+          "isOptional": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "run_queue",
+      "accounts": [],
+      "args": [],
+      "returns": "u16"
+    },
+    {
+      "name": "set_card1",
+      "accounts": [
+        {
+          "name": "dataAccount",
+          "isMut": true,
+          "isSigner": false,
+          "isOptional": false
+        }
+      ],
+      "args": [
+        {
+          "name": "c",
+          "type": {
+            "defined": "card"
+          }
+        }
+      ],
+      "returns": {
+        "defined": "card"
+      }
+    },
+    {
+      "name": "ace_of_spaces",
+      "docs": [
+        "notice: return the ace of spades"
+      ],
+      "accounts": [],
+      "args": [],
+      "returns": {
+        "defined": "card"
+      }
+    },
+    {
+      "name": "score_card",
+      "docs": [
+        "notice: score card"
+      ],
+      "accounts": [],
+      "args": [
+        {
+          "name": "c",
+          "type": {
+            "defined": "card"
+          }
+        }
+      ],
+      "returns": "u32"
+    }
+  ],
+  "types": [
+    {
+      "name": "value",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "two"
+          },
+          {
+            "name": "three"
+          },
+          {
+            "name": "four"
+          },
+          {
+            "name": "five"
+          },
+          {
+            "name": "six"
+          },
+          {
+            "name": "seven"
+          },
+          {
+            "name": "eight"
+          },
+          {
+            "name": "nine"
+          },
+          {
+            "name": "ten"
+          },
+          {
+            "name": "jack"
+          },
+          {
+            "name": "queen"
+          },
+          {
+            "name": "king"
+          },
+          {
+            "name": "ace"
+          }
+        ]
+      }
+    },
+    {
+      "name": "suit",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "club"
+          },
+          {
+            "name": "diamonds"
+          },
+          {
+            "name": "hearts"
+          },
+          {
+            "name": "spades"
+          }
+        ]
+      }
+    },
+    {
+      "name": "card",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "v",
+            "type": {
+              "defined": "value"
+            }
+          },
+          {
+            "name": "s",
+            "type": {
+              "defined": "suit"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
